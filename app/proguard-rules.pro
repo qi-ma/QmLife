@@ -228,10 +228,18 @@
 
 #三级联动
 
--keepattributes Signature
--keepattributes *Annotation*
--keep class sun.misc.Unsafe { *; }
--keep class com.daiba.wsjr.bean.** { *; }
+#地区 3 级联动选择器
+
+-keep class com.lljjcoder.**{
+    *;
+}
+
+-dontwarn demo.**
+-keep class demo.**{*;}
+-dontwarn net.sourceforge.pinyin4j.**
+-keep class net.sourceforge.pinyin4j.**{*;}
+-keep class net.sourceforge.pinyin4j.format.**{*;}
+-keep class net.sourceforge.pinyin4j.format.exception.**{*;}
 
 #ButterKnife的代码混淆
 -keep class butterknife.** { *; }
@@ -244,4 +252,23 @@
 
 -keepclasseswithmembernames class * {
     @butterknife.* <methods>;
+}
+
+-keep class org.litepal.** {
+    *;
+}
+
+-keep class * extends org.litepal.crud.DataSupport {
+    *;
+}
+
+-keep class * extends org.litepal.crud.LitePalSupport {
+    *;
+}
+
+-keep class com.parse.*{ *; }
+-dontwarn com.parse.**
+-dontwarn com.squareup.picasso.**
+-keepclasseswithmembernames class * {
+    native <methods>;
 }
