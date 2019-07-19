@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<litepal>
+    <dbname value="qimaDB"/>   <!-- 数据库的名字 -->
+    <version value="1"/>  <!-- 数据库的版本号 -->
+    <list>
+        <!-- 配置数据库中相应的表，暂时不写 -->
+        <mapping class="com.qm.qmlife.business.model.User"/>
+        <mapping class="com.qm.qmlife.business.model.Note"/>
+    </list>
+</litepal>

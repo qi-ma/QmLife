@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group
+        android:checkableBehavior="single"
+        >
+        <item
+            android:id="@+id/meet_us"
+            android:icon="@drawable/meet_us"
+            android:title="我们的相遇"
+
+            />
+
+    </group>
+        <item
+            android:title="其他"
+            >
+            <menu>
+                <item
+                    android:icon="@drawable/set"
+                    android:title="设置"
+                    />
+                <item
+                    android:icon="@drawable/app_update"
+                    android:title="检查更新"
+                    />
+
+                <item
+                    android:icon="@drawable/about_author"
+                    android:title="关于作者"
+                    />
+            </menu>
+        </item>
+</menu>

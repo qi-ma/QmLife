@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context="com.qm.qmlife.business.user.RegisterActivity">
+    <include layout="@layout/title_include"/>
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:background="@drawable/btn_user_register_back"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:padding="10dp"
+                    android:src="@drawable/tab_user_selected"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp" />
+                <EditText
+                    android:inputType="text"
+                    android:id="@+id/et_username"
+                    android:imeOptions="actionNext"
+                    android:background="@null"
+                    android:gravity="center_vertical"
+                    android:hint="请输入用户名"
+                    android:lines="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+            <LinearLayout
+                android:background="@drawable/btn_user_register_back"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:padding="10dp"
+                    android:src="@drawable/account"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp" />
+                <EditText
+                    android:inputType="number"
+                    android:id="@+id/et_useraccount"
+                    android:imeOptions="actionNext"
+                    android:background="@null"
+                    android:gravity="center_vertical"
+                    android:hint="请输入账号"
+                    android:lines="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:background="@drawable/btn_user_register_back"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:padding="11dp"
+                    android:src="@drawable/pwd"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp" />
+                <EditText
+                    android:id="@+id/et_userpwd"
+                    android:imeOptions="actionNext"
+                    android:inputType="textPassword"
+                    android:background="@null"
+                    android:gravity="center_vertical"
+                    android:hint="请输入密码"
+                    android:lines="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+            <LinearLayout
+                android:background="@drawable/btn_user_register_back"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:padding="5dp"
+                    android:src="@drawable/okpwd"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp" />
+                <EditText
+                    android:id="@+id/et_userokpwd"
+                    android:imeOptions="actionDone"
+                    android:inputType="textPassword"
+                    android:background="@null"
+                    android:gravity="center_vertical"
+                    android:hint="请输入确认密码"
+                    android:lines="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                    <RadioButton
+                        android:id="@+id/rb_man"
+                        android:checked="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="男神"
+                        android:textSize="18sp" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                    <RadioButton
+                        android:id="@+id/rb_woman"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="女神"
+                        android:textSize="18sp" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+                </LinearLayout>
+            </LinearLayout>
+            <Button
+                android:id="@+id/btn_register"
+                android:textSize="18sp"
+                android:text="注册"
+                android:textColor="@color/white"
+                android:background="@drawable/btn_user_login_back"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

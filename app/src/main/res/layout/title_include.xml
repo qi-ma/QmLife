@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:background="@color/colorPrimary"
+    android:layout_height="45dp">
+    <ImageView
+        android:visibility="invisible"
+        android:padding="10dp"
+        android:src="@drawable/break_white"
+        android:id="@+id/iv_break"
+        android:layout_width="45dp"
+        android:layout_height="match_parent" />
+    <TextView
+        android:textColor="@color/white"
+        android:id="@+id/tv_title"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:text="业务操作"
+        android:textSize="20sp"
+        android:gravity="center"/>
+    <TextView
+        android:id="@+id/tv_note_add"
+        android:visibility="invisible"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:text="添加"
+        android:layout_width="45dp"
+        android:layout_height="match_parent"/>
+</LinearLayout>

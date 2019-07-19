@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/dl_menu_drawer"
+    android:fitsSystemWindows="true"
+    >
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="com.qm.qmlife.business.MenuActivity"
+        >
+
+        <com.qm.qmlife.business.adapter.MyViewPager
+            android:id="@+id/vp_content"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            />
+        <com.chaychan.library.BottomBarLayout
+            android:id="@+id/bbl"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:background="@color/tab_gb"
+            >
+            <com.chaychan.library.BottomBarItem
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                app:iconNormal="@drawable/tab_welfare_normal"
+                app:iconSelected="@drawable/tab_welfare_selected"
+                app:itemText="福利"
+                app:textColorNormal="@color/tab_normal_color"
+                app:textColorSelected="@color/tab_selected_color"
+                app:itemTextSize="10sp"
+
+                />
+            <com.chaychan.library.BottomBarItem
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                app:iconNormal="@drawable/tab_weather_normal"
+                app:iconSelected="@drawable/tab_weather_selected"
+                app:itemText="天气"
+                app:textColorNormal="@color/tab_normal_color"
+                app:textColorSelected="@color/tab_selected_color"
+                app:itemTextSize="10sp"
+
+                />
+
+            <com.chaychan.library.BottomBarItem
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                app:iconNormal="@drawable/tab_technology_normal"
+                app:iconSelected="@drawable/tab_technology_selected"
+                app:itemText="简书"
+                app:textColorNormal="@color/tab_normal_color"
+                app:textColorSelected="@color/tab_selected_color"
+                app:itemTextSize="10sp"
+
+                />
+
+
+
+
+            <com.chaychan.library.BottomBarItem
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                app:iconNormal="@drawable/tab_user_normal"
+                app:iconSelected="@drawable/tab_user_selected"
+                app:itemText="我的"
+                app:textColorNormal="@color/tab_normal_color"
+                app:textColorSelected="@color/tab_selected_color"
+                app:itemTextSize="10sp"
+
+                />
+        </com.chaychan.library.BottomBarLayout>
+
+    </LinearLayout>
+    <android.support.design.widget.NavigationView
+        android:id="@+id/nv_menu_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/navigation_header"
+        app:menu="@menu/drawer_view"
+        />
+</android.support.v4.widget.DrawerLayout>

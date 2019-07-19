@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#0098cb</color>
+    <color name="colorPrimaryDark">#0098cb</color>
+    <color name="colorAccent">#0098cb</color>
+
+    <color name="technology_item_gb">#b6b6b6</color>
+    <color name="tab_gb">#f4f4f4</color>
+    <color name="pv_gb">#000000</color>
+    <color name="tab_selected_color">#0098cb</color>
+    <color name="tab_normal_color">#515051</color>
+</resources>
