@@ -3,6 +3,7 @@ package com.qm.qmlife.business.technology;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -59,5 +60,15 @@ public class TechnologyInfoActivity extends BaseActivity {
                 break;
 
         }
+    }
+
+    @Override
+    public boolean
+    onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && wvTechnologyContent.canGoBack()) {
+            wvTechnologyContent.goBack();//返回上个页面
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);//退出H5界面
     }
 }
