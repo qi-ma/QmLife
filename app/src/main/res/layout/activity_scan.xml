@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.qm.qmlife.business.scan.ScanActivity">
+    <include layout="@layout/title_include"/>
+
+    <View
+        android:layout_weight="1"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"/>
+    <Button
+        android:textSize="15sp"
+        android:id="@+id/btn_scan_bar"
+        android:textColor="@color/white"
+        android:background="@drawable/btn_user_login_back"
+        android:text="扫描条形码"
+        android:layout_gravity="center"
+        android:layout_width="100sp"
+        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:layout_margin="10dp"
+
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_weight="1"
+            android:background="@drawable/btn_user_register_back"
+            android:layout_gravity="center"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" >
+            <TextView
+                android:layout_margin="5dp"
+                android:text="条形码:"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <EditText
+                android:maxLines="5"
+                android:id="@+id/et_scan_bar"
+                android:textSize="15sp"
+                android:background="@null"
+                android:layout_margin="5dp"
+                android:text=""
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <Button
+            android:id="@+id/btn_scan_bar_copy"
+            android:layout_marginLeft="10dp"
+            android:textSize="15sp"
+            android:textColor="@color/white"
+            android:background="@drawable/btn_user_login_back"
+            android:text="复制"
+            android:layout_width="50dp"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+
+    <Button
+        android:textSize="15sp"
+        android:id="@+id/btn_scan_qr"
+
+        android:textColor="@color/white"
+        android:background="@drawable/btn_user_login_back"
+        android:text="扫描二维码"
+        android:layout_gravity="center"
+        android:layout_width="100sp"
+        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:layout_margin="10dp"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_weight="1"
+            android:background="@drawable/btn_user_register_back"
+            android:layout_gravity="center"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" >
+            <TextView
+                android:layout_margin="5dp"
+                android:text="二维码:"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <EditText
+                android:maxLines="5"
+                android:id="@+id/et_scan_qr"
+                android:textSize="15sp"
+                android:background="@null"
+                android:layout_margin="5dp"
+                android:text=""
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <Button
+            android:id="@+id/btn_scan_qr_get"
+            android:layout_marginLeft="10dp"
+            android:textSize="15sp"
+            android:textColor="@color/white"
+            android:background="@drawable/btn_user_login_back"
+            android:text="跳转"
+            android:layout_width="50dp"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+    <View
+        android:layout_weight="1"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"/>
+
+</LinearLayout>

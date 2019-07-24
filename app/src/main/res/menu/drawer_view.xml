@@ -20,6 +20,10 @@
                     android:title="设置"
                     />
                 <item
+                    android:icon="@drawable/scan"
+                    android:title="扫描"
+                    />
+                <item
                     android:icon="@drawable/app_update"
                     android:title="检查更新"
                     />

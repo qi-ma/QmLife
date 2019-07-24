@@ -10,4 +10,5 @@ public class Prefs {
     public static final String USER_IMGURL = "user_imgurl";// 用户头像地址
 
     public static final String MEET_DATE = "meet_date";// 相遇时间
+    public static final String SCAN_TYPE = "scan_type";// 相遇时间
 }

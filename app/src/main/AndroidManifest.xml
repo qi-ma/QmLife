@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.qm.qmlife">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -12,6 +13,7 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_LOGS" />
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:name=".application.QmLifeApplication"
@@ -99,6 +101,23 @@
             android:label="网页"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".business.scan.ScanActivity"
+            android:label="扫描"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"
+            />
+        <!-- 调整二维码扫描界面为竖屏 -->
+        <!--<activity-->
+            <!--android:name="com.journeyapps.barcodescanner.CaptureActivity"-->
+            <!--android:screenOrientation="portrait"-->
+            <!--tools:replace="screenOrientation" />-->
+        <activity
+            android:name=".business.scan.CustomCaptureActivity"
+            android:label="扫描"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan"
             />
 
@@ -107,6 +126,7 @@
             android:configChanges="keyboardHidden|orientation|screenSize|locale"
             android:theme="@android:style/Theme.Translucent" />
 
+
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="4e48c2a5cd.fileProvider"
@@ -114,8 +134,10 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/provider_paths"/>
+                android:resource="@xml/provider_paths" />
         </provider>
+
+
     </application>
 
 </manifest>

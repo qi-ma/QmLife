@@ -1,10 +1,7 @@
 package com.qm.qmlife.business;
 
 import android.app.LocalActivityManager;
-import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -18,11 +15,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.chaychan.library.BottomBarLayout;
-import com.orhanobut.logger.Logger;
-import com.qm.qmlife.MainActivity;
 import com.qm.qmlife.R;
 import com.qm.qmlife.base.BaseActivity;
 import com.qm.qmlife.business.adapter.MyViewPagerAdapter;
+import com.qm.qmlife.business.scan.ScanActivity;
 import com.qm.qmlife.business.technology.TechnologyActivity;
 import com.qm.qmlife.business.user.UserActivity;
 import com.qm.qmlife.business.weather.WeatherActivity;
@@ -34,7 +30,6 @@ import com.qm.qmlife.util.common.Prefs;
 import com.qm.qmlife.util.tool.PrefTool;
 import com.tencent.bugly.Bugly;
 import com.tencent.bugly.beta.Beta;
-import com.tencent.bugly.beta.UpgradeInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,7 +48,7 @@ public class MenuActivity extends BaseActivity {
     @BindView(R.id.bbl)BottomBarLayout bottomBarLayout;
     @BindView(R.id.dl_menu_drawer)DrawerLayout dlMenuDrawer;
     @BindView(R.id.nv_menu_navigation)NavigationView nvMenuNavigation;
-    private UpgradeInfo upgradeInfo;
+//    private UpgradeInfo upgradeInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,6 +92,9 @@ public class MenuActivity extends BaseActivity {
                             ToastUtil.showToast(MenuActivity.this,"以是最新版本");
                         }
 
+                    }else if (title.equals("扫描")){
+                        Intent intentScan=new Intent(MenuActivity.this, ScanActivity.class);
+                        startActivity(intentScan);
                     }
 
                     //关闭导航菜单
@@ -174,15 +172,15 @@ public class MenuActivity extends BaseActivity {
         return super.onKeyDown(keyCode, event);
     }
 
-    public static int getVersionCode(Context context)//获取版本号(内部识别号)
-    {
-        try {
-            PackageInfo pi=context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
-            return pi.versionCode;
-        } catch (PackageManager.NameNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-            return 0;
-        }
-    }
+//    public static int getVersionCode(Context context)//获取版本号(内部识别号)
+//    {
+//        try {
+//            PackageInfo pi=context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
+//            return pi.versionCode;
+//        } catch (PackageManager.NameNotFoundException e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//            return 0;
+//        }
+//    }
 }
