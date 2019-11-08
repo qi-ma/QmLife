@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -78,35 +79,7 @@ public class PhotoActivity extends BaseActivity{
                 //启动动画
                 animator.start();
 
-                Picasso.with(PhotoActivity.this)
-                        .load(MyAdapter.imgs.get(position).getImgSrc())
-                        .into(new Target() {
-                            @Override
-                            public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-                                view.setImageBitmap(bitmap);
-                                //这是动画
-                                ObjectAnimator animator1 = ObjectAnimator.ofFloat( view,"alpha",1);
-                                //动画时间
-                                animator1.setDuration(1000);
-                                //启动动画
-                                animator1.start();
-                            }
-
-                            @Override
-                            public void onBitmapFailed(Drawable errorDrawable) {
-                                ObjectAnimator animator1 = ObjectAnimator.ofFloat( view,"alpha",1);
-                                animator1.setDuration(1000);
-                                animator1.start();
-                            }
-
-                            @Override
-                            public void onPrepareLoad(Drawable placeHolderDrawable) {
-                                ObjectAnimator animator1 = ObjectAnimator.ofFloat( view,"alpha",1);
-                                animator1.setDuration(1000);
-                                animator1.start();
-                            }
-
-                        });
+                picassoPhoto(position, view);
                 container.addView(view);
                 view.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -139,5 +112,38 @@ public class PhotoActivity extends BaseActivity{
             }
         });
         vpImgInfo.setCurrentItem(position);
+    }
+
+    private void picassoPhoto(final int position, final PhotoView view) {
+        Log.d("debug",MyAdapter.imgs.get(position).getImgSrc());
+        Picasso.with(PhotoActivity.this)
+                .load(MyAdapter.imgs.get(position).getImgSrc())
+                .into(new Target() {
+                    @Override
+                    public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+                        view.setImageBitmap(bitmap);
+                        //这是动画
+                        ObjectAnimator animator1 = ObjectAnimator.ofFloat( view,"alpha",1);
+                        //动画时间
+                        animator1.setDuration(1000);
+                        //启动动画
+                        animator1.start();
+                    }
+
+                    @Override
+                    public void onBitmapFailed(Drawable errorDrawable) {
+                        ObjectAnimator animator1 = ObjectAnimator.ofFloat( view,"alpha",1);
+                        animator1.setDuration(1000);
+                        animator1.start();
+                    }
+
+                    @Override
+                    public void onPrepareLoad(Drawable placeHolderDrawable) {
+                        ObjectAnimator animator1 = ObjectAnimator.ofFloat( view,"alpha",1);
+                        animator1.setDuration(1000);
+                        animator1.start();
+                    }
+
+                });
     }
 }

@@ -1,14 +1,19 @@
 package com.qm.qmlife.business.weather;
 
+import android.Manifest;
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
@@ -30,7 +35,6 @@ import com.lljjcoder.bean.DistrictBean;
 import com.lljjcoder.bean.ProvinceBean;
 import com.lljjcoder.citywheel.CityConfig;
 import com.lljjcoder.style.citypickerview.CityPickerView;
-import com.orhanobut.logger.Logger;
 import com.qm.qmlife.R;
 import com.qm.qmlife.base.BaseActivity;
 import com.qm.qmlife.business.adapter.WeatherAdapter;
@@ -206,7 +210,16 @@ public class WeatherActivity extends BaseActivity {
         mLocationClient.setLocationOption(mLocationOption);
         mLocationClient.enableBackgroundLocation(2001, buildNotification());
         //启动定位
-        mLocationClient.startLocation();
+
+        if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED){//未开启定位权限
+            //开启定位权限,200是标识码
+            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION},200);
+        }else{
+            mLocationClient.startLocation();//开始定位
+            ToastUtil.showToast(this,"已开启定位权限");
+        }
+
     }
 
     private void getAir(String city) {
@@ -370,5 +383,20 @@ public class WeatherActivity extends BaseActivity {
             return builder.getNotification();
         }
         return notification;
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode){
+            case 200://刚才的识别码
+                if(grantResults[0] == PackageManager.PERMISSION_GRANTED){//用户同意权限,执行我们的操作
+                    mLocationClient.startLocation();//开始定位
+                }else{//用户拒绝之后,当然我们也可以弹出一个窗口,直接跳转到系统设置页面
+                    ToastUtil.showToast(this,"未开启定位权限,请手动到设置去开启权限");
+                }
+                break;
+            default:
+                break;
+        }
     }
 }

@@ -43,7 +43,7 @@ public class UserActivity extends BaseActivity {
         }
     }
 
-    @OnClick({R.id.civ_user_img,R.id.tv_user_name,R.id.ll_user_update,R.id.ll_user_note})
+    @OnClick({R.id.civ_user_img,R.id.tv_user_name,R.id.ll_user_update,R.id.ll_user_note,R.id.ll_user_feedback})
     public void onClick(View view){
         switch (view.getId()){
             case R.id.civ_user_img:
@@ -61,6 +61,10 @@ public class UserActivity extends BaseActivity {
             case R.id.ll_user_note:
                 Intent intentNote=new Intent(this,NoteActivity.class);
                 startActivity(intentNote);
+                break;
+            case R.id.ll_user_feedback:
+                Intent intentFeedback=new Intent(this,FeedbackActivity.class);
+                startActivity(intentFeedback);
                 break;
         }
     }

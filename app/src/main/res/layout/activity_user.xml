@@ -106,6 +106,33 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"/>
             </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll_user_feedback"
+                android:layout_marginTop="5dp"
+                android:background="@color/tab_gb"
+                android:layout_width="match_parent"
+                android:layout_height="40dp">
+
+                <View
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"/>
+                <ImageView
+                    android:src="@drawable/user_feedback"
+                    android:layout_width="28dp"
+                    android:layout_height="match_parent" />
+                <TextView
+                    android:textSize="17sp"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center"
+                    android:text="我想反馈"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+                <View
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 

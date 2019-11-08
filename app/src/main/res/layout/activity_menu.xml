@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/dl_menu_drawer"
-    android:fitsSystemWindows="true"
+
     >
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -15,13 +15,28 @@
         android:orientation="vertical"
         tools:context="com.qm.qmlife.business.MenuActivity"
         >
-
-        <com.qm.qmlife.business.adapter.MyViewPager
-            android:id="@+id/vp_content"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
+        <FrameLayout
             android:layout_weight="1"
-            />
+            android:layout_width="wrap_content"
+            android:layout_height="0dp">
+            <com.qm.qmlife.business.adapter.MyViewPager
+                android:id="@+id/vp_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
+            <android.support.design.widget.FloatingActionButton
+                android:src="@drawable/reward"
+                android:id="@+id/fab_reward"
+                android:layout_gravity="bottom|end"
+                android:clickable="true"
+                app:elevation="3dp"
+                app:pressedTranslationZ="6dp"
+                android:layout_margin="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:focusable="true" />
+        </FrameLayout>
+
         <com.chaychan.library.BottomBarLayout
             android:id="@+id/bbl"
             android:layout_width="match_parent"
@@ -95,4 +110,5 @@
         app:headerLayout="@layout/navigation_header"
         app:menu="@menu/drawer_view"
         />
+
 </android.support.v4.widget.DrawerLayout>

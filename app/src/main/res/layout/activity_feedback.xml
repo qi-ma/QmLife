@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.qm.qmlife.business.user.FeedbackActivity">
+    <include layout="@layout/title_include"/>
+    <LinearLayout
+        android:background="@color/tab_gb"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="150dp">
+        <EditText
+            android:id="@+id/et_note_content"
+            android:enabled="true"
+            android:gravity="top"
+            android:inputType="textMultiLine"
+            android:scrollbars="vertical"
+            android:imeOptions="actionDone"
+            android:background="@null"
+            android:hint="反馈的内容"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+    <LinearLayout
+        android:background="@color/tab_gb"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/et_note_title"
+            android:inputType="text"
+            android:imeOptions="actionNext"
+            android:background="@null"
+            android:gravity="center_vertical"
+            android:hint="您的联系方式（QQ，微信，手机号）"
+            android:lines="1"
+            android:layout_width="match_parent"
+            android:layout_height="40dp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_note_upload"
+        android:textSize="18sp"
+        android:text="提交"
+        android:textColor="@color/white"
+        android:background="@drawable/btn_user_login_back"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>
