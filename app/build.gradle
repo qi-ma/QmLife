@@ -19,20 +19,24 @@ android {
     }
     buildTypes {
         debug {
-            minifyEnabled true // 混淆
-            zipAlignEnabled true // Zipalign优化
-            shrinkResources true // 移除无用的resource文件
+            minifyEnabled false // 混淆
+            zipAlignEnabled false // Zipalign优化
+            shrinkResources false // 移除无用的resource文件
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             // 加载默认混淆配置文件
         }
         release {
-            minifyEnabled true // 混淆
-            zipAlignEnabled true // Zipalign优化
-            shrinkResources true  // 移除无用的resource文件
+            minifyEnabled false // 混淆
+            zipAlignEnabled false // Zipalign优化
+            shrinkResources false  // 移除无用的resource文件
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             // 加载默认混淆配置文件
 
         }
+    }
+    packagingOptions {
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/DEPENDENCIES'
     }
 }
 

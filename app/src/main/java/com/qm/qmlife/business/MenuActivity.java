@@ -1,16 +1,25 @@
 package com.qm.qmlife.business;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.app.LocalActivityManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -30,6 +39,7 @@ import com.qm.qmlife.business.user.UserActivity;
 import com.qm.qmlife.business.weather.WeatherActivity;
 import com.qm.qmlife.business.welfare.WelfareActivity;
 import com.qm.qmlife.custom.CircleImageView;
+import com.qm.qmlife.service.FtpService;
 import com.qm.qmlife.util.DateUtil;
 import com.qm.qmlife.util.ToastUtil;
 import com.qm.qmlife.util.common.Prefs;
@@ -54,6 +64,12 @@ public class MenuActivity extends BaseActivity{
     //用于计算手指滑动的速度。
     private VelocityTracker mVelocityTracker;
     float xDown = 0,xMove,yDown = 0,yMove;
+
+    private static String[] PERMISSIONS_STORAGE = {
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE};
+    private int REQUEST_PERMISSION_CODE=1;
+    private String str;
 
     @BindView(R.id.vp_content)ViewPager vpContent;
     @BindView(R.id.bbl)BottomBarLayout bottomBarLayout;
@@ -84,29 +100,49 @@ public class MenuActivity extends BaseActivity{
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                     item.setCheckable(true);
                     String title=item.getTitle().toString();
-                    if (title.equals("我们的相遇")){
-                        ToastUtil.showToast(MenuActivity.this,
-                                PrefTool.getString(MenuActivity.this, Prefs.USER_SEX,"")+
-                                "我们相遇了"+DateUtil.differentDaysByMillisecond(
-                                        PrefTool.getString(MenuActivity.this, Prefs.MEET_DATE,""),
-                                        DateUtil.getDate(new java.util.Date())
-                                )+"天");
-                    }else if (title.equals("设置")){
-                        ToastUtil.showToast(MenuActivity.this,"还未开发");
+                    switch (title){
+                        case "我们的相遇":
+                            ToastUtil.showToast(MenuActivity.this,
+                                    PrefTool.getString(MenuActivity.this, Prefs.USER_SEX,"")+
+                                            "我们相遇了"+DateUtil.differentDaysByMillisecond(
+                                            PrefTool.getString(MenuActivity.this, Prefs.MEET_DATE,""),
+                                            DateUtil.getDate(new java.util.Date())
+                                    )+"天");
+                            break;
+                        case "设置":
+                            ToastUtil.showToast(MenuActivity.this,"还未开发");
+                            break;
+                        case "关于作者":
+                            ToastUtil.showToast(MenuActivity.this,"百度“齐码闯天涯”QQ2714730493");
+                            break;
+                        case "检查更新":
+                            try {
+                                int getCode= Beta.getUpgradeInfo().versionCode;
+                                Beta.checkUpgrade(false,false);
+                            }catch (Exception e){
+                                ToastUtil.showToast(MenuActivity.this,"以是最新版本");
+                            }
+                            break;
+                        case "扫描":
+                            Intent intentScan=new Intent(MenuActivity.this, ScanActivity.class);
+                            startActivity(intentScan);
+                            break;
+                        case "文件共享":
+                            initService();
+                            AlertDialog.Builder alertDialog=new AlertDialog.Builder(MenuActivity.this);
+                            alertDialog.setTitle("请使用完再点击关闭服务器")
+                                    .setMessage(str)
+                                    .setCancelable(false)
+                                    .setNegativeButton("关闭服务器", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            stopService(new Intent(MenuActivity.this, FtpService.class));
+                                        }
+                                    })
+                                    .create();
+                            alertDialog.show();
+                            break;
 
-                    }else if (title.equals("关于作者")){
-                        ToastUtil.showToast(MenuActivity.this,"百度“齐码闯天涯”QQ2714730493");
-                    }else if (title.equals("检查更新")){
-                        try {
-                            int getCode= Beta.getUpgradeInfo().versionCode;
-                            Beta.checkUpgrade(false,false);
-                        }catch (Exception e){
-                            ToastUtil.showToast(MenuActivity.this,"以是最新版本");
-                        }
-
-                    }else if (title.equals("扫描")){
-                        Intent intentScan=new Intent(MenuActivity.this, ScanActivity.class);
-                        startActivity(intentScan);
                     }
 
                     //关闭导航菜单
@@ -279,7 +315,7 @@ public class MenuActivity extends BaseActivity{
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 if ("支付宝".equals(items3[i])){
-                                    final String orderInfo = "";   // 订单信息
+                                    final String orderInfo = "app_id=2019110868984508&";   // 订单信息
 
                                     Runnable payRunnable = new Runnable() {
 
@@ -304,6 +340,75 @@ public class MenuActivity extends BaseActivity{
                 alertDialog3.show();
                 break;
         }
+    }
+
+    private void initService() {
+        String ip = getIp();
+        if(TextUtils.isEmpty(ip)){
+            ToastUtil.showToast(MenuActivity.this,"获取不到IP，请连接网络");
+        }else{
+            str = "请在PC端浏览器上输入网址访问FTP服务\n" +
+                    "ftp://"+ip+":1234";
+        }
+
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, PERMISSIONS_STORAGE, REQUEST_PERMISSION_CODE);
+            }
+        }
+
+        startService(new Intent(this, FtpService.class));
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == REQUEST_PERMISSION_CODE) {
+            int snum=0;
+            for (int i = 0; i < permissions.length; i++) {
+                Log.i("MenuActivity", "申请的权限为：" + permissions[i] + ",申请结果：" + grantResults[i]);
+                if (grantResults[i]==0)
+                    snum+=1;
+            }
+            if (snum!=2){//说明权限申请没申请成功，再次申请
+                if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
+                    if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                        ActivityCompat.requestPermissions(this, PERMISSIONS_STORAGE, REQUEST_PERMISSION_CODE);
+                    }
+                }
+            }
+        }
+    }
+
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        stopService(new Intent(this, FtpService.class));
+    }
+
+
+    public String getIp(){
+        //获取wifi服务
+        WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+        //判断wifi是否开启
+        if (!wifiManager.isWifiEnabled()) {
+            wifiManager.setWifiEnabled(true);
+        }
+        WifiInfo wifiInfo = wifiManager.getConnectionInfo();
+        int ipAddress = wifiInfo.getIpAddress();
+        String ip = intToIp(ipAddress);
+        return ip;
+    }
+
+
+    private String intToIp(int i) {
+
+        return (i & 0xFF ) + "." +
+                ((i >> 8 ) & 0xFF) + "." +
+                ((i >> 16 ) & 0xFF) + "." +
+                ( i >> 24 & 0xFF) ;
     }
 
 
